@@ -1,5 +1,10 @@
 import math
 import requests
+import io
+import sys
+import urllib.request
+
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer,encoding='utf8')
 
 def calc_dist(lat1, lon1, lat2, lon2):
     lat1 = math.radians(lat1)
@@ -16,7 +21,7 @@ def calc_dist(lat1, lon1, lat2, lon2):
 
 def get_dist(meteor):
     return meteor.get('distance', math.inf)
-    
+
 if __name__ == '__main__':
     my_loc = (29.424122, -98.493628)
 
@@ -32,4 +37,4 @@ if __name__ == '__main__':
 
     meteor_data.sort(key=get_dist)
 
-    print(meteor_data[0:10])
+    print(meteor_data[0:10]) #.decode('utf-8')
